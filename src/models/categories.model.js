@@ -1,5 +1,11 @@
 const CategoriesModel = (sequelize, DataTypes) => {
     const schema = sequelize.define('User', {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
+          },
         name: DataTypes.STRING,
     });
     schema.associate = (models) => {
