@@ -3,7 +3,7 @@ module.exports = (sequelize, _DataTypes) => {
   {},
   {timestamps: false,
     underscored: true, 
-    tableName: 'posts_categories'}
+    tableName: 'postsCategories'}
   )
 
   PostAndCatSchema.associate = (models) => {

@@ -13,7 +13,7 @@ const PostsModel = (sequelize, DataTypes) => {
         update: DataTypes.DATETIME,
     }, {
         timestamps: false,
-        tableName: users,
+        tableName: 'blogPosts',
         underscored: true,
     });
     postsSchema.associate = (models) => {

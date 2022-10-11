@@ -7,7 +7,13 @@ const CategoriesModel = (sequelize, DataTypes) => {
             allowNull: false
           },
         name: DataTypes.STRING,
-    });
+    }, 
+    {
+      timestamps: false,
+      tableName: 'categpries',
+      underscored: true,
+    }
+    );
     schema.associate = (models) => {
         schema.hasMany(models.posts_categories, {
             foreignKey: 'category_id',
