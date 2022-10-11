@@ -1,5 +1,5 @@
 const CategoriesModel = (sequelize, DataTypes) => {
-    const schema = sequelize.define('User', {
+    const schema = sequelize.define('Categories', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,

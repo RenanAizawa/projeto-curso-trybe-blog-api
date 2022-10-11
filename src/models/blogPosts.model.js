@@ -1,5 +1,5 @@
 const PostsModel = (sequelize, DataTypes) => {
-    const postsSchema = sequelize.define('User', {
+    const postsSchema = sequelize.define('Posts', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
