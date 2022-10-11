@@ -1,9 +1,22 @@
-module.exports = (sequelize, _DataTypes) => {
+const { Sequelize } = require("sequelize/types");
+
+module.exports = (sequelize, DataTypes) => {
   const PostAndCatSchema = sequelize.define('Post_Categorie',
-  {},
+  {
+    postId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false
+    },
+    categoryId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false
+    }
+  },
   {timestamps: false,
     underscored: true, 
-    tableName: 'postsCategories'}
+    tableName: 'posts_categories'}
   )
 
   PostAndCatSchema.associate = (models) => {

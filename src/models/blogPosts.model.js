@@ -24,7 +24,7 @@ const PostsModel = (sequelize, DataTypes) => {
     postsSchema.associate = (models) => {
         userSchema.belongsTo(models.posts_categories, {
             as: 'posts',
-            foreignKey: 'post_id',
+            foreignKey: 'postId',
         })
     }
     return postsSchema;
