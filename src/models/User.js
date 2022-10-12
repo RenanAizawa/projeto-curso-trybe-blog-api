@@ -12,7 +12,7 @@ const UserModel = (sequelize, DataTypes) => {
         image: DataTypes.STRING,
     }, {
         timestamps: false,
-        tableName: users,
+        tableName: 'users',
         underscored: true,
     });
     userSchema.associate = (models) => {
