@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize/types");
 
 module.exports = (sequelize, DataTypes) => {
-  const PostAndCatSchema = sequelize.define('Post_Categorie',
+  const PostAndCatSchema = sequelize.define('PostCategory',
   {
     postId: {
       type: DataTypes.INTEGER,
@@ -12,25 +12,26 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false
-    }
+    },
   },
   {timestamps: false,
     underscored: true, 
-    tableName: 'posts_categories'}
+    tableName: 'posts_categories',
+  }
   )
 
   PostAndCatSchema.associate = (models) => {
-    models.Posts.belongsTooMany(models.Categories, {
+    models.BlogPost.belongsToMany(models.Category, {
       as: 'posts',
-      through: PostAndCatSchema,
-      foreignKey: 'categoryId',
-      otherKey: 'postId',
-    });
-    models.Categories.belongsTooMany(models.Posts, {
-      as: 'categories',
       through: PostAndCatSchema,
       foreignKey: 'postId',
       otherKey: 'categoryId',
+    });
+    models.Category.belongsToMany(models.BlogPost, {
+      as: 'categories',
+      through: PostAndCatSchema,
+      foreignKey: 'categoryId',
+      otherKey: 'postId',
     })
   };
 
