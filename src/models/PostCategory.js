@@ -1,5 +1,3 @@
-const { Sequelize } = require("sequelize/types");
-
 module.exports = (sequelize, DataTypes) => {
   const PostAndCatSchema = sequelize.define('PostCategory',
   {
