@@ -1,5 +1,5 @@
 const CategoriesModel = (sequelize, DataTypes) => {
-    const schema = sequelize.define('Categories', {
+    const schema = sequelize.define('Category', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -10,14 +10,14 @@ const CategoriesModel = (sequelize, DataTypes) => {
     }, 
     {
       timestamps: false,
-      tableName: 'categpries',
+      tableName: 'Category',
       underscored: true,
     }
     );
     schema.associate = (models) => {
         schema.hasMany(models.posts_categories, {
             foreignKey: 'category_id',
-            as: 'category',
+            as: 'posts_id',
         })
     }
     return schema;
