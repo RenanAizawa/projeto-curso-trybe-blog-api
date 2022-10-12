@@ -1,5 +1,5 @@
 const PostsModel = (sequelize, DataTypes) => {
-    const postsSchema = sequelize.define('Posts', {
+    const postsSchema = sequelize.define('BlogPost', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -10,22 +10,16 @@ const PostsModel = (sequelize, DataTypes) => {
         content: DataTypes.STRING,
         userId: DataTypes.INTIGER,
         published: DataTypes.DATETIME,
-        update: DataTypes.DATETIME,
+        updated: DataTypes.DATETIME,
     }, {
         timestamps: false,
-        tableName: 'blogPosts',
+        tableName: 'blog_posts',
         underscored: true,
     });
     postsSchema.associate = (models) => {
-        userSchema.belongsTo(models.users, {
+        postsSchema.belongsTo(models.User, {
             foreignKey: 'userId', as: 'user'
-        })
-    };
-    postsSchema.associate = (models) => {
-        userSchema.belongsTo(models.posts_categories, {
-            as: 'posts',
-            foreignKey: 'postId',
-        })
+        });
     }
     return postsSchema;
 }
