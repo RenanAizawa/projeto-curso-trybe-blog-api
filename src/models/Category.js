@@ -10,12 +10,12 @@ const CategoriesModel = (sequelize, DataTypes) => {
     }, 
     {
       timestamps: false,
-      tableName: 'Category',
+      tableName: 'categories',
       underscored: true,
     }
     );
     schema.associate = (models) => {
-        schema.hasMany(models.posts_categories, {
+        schema.hasMany(models.PostCategory, {
             foreignKey: 'category_id',
             as: 'posts_id',
         })

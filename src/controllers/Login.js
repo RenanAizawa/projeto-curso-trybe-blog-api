@@ -10,7 +10,7 @@ const userByEmail = async (req, res) => {
     try {
         const { email } = req.body;
         const data = await loginService.userByEmail(email);
-        const token = jwt.sign(data, secret);
+        const token = jwt.sign({ data }, secret);
 
         return res.status(200).json({ token });
     } catch (error) {

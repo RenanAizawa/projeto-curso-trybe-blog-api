@@ -8,9 +8,9 @@ const PostsModel = (sequelize, DataTypes) => {
           },
         title: DataTypes.STRING,
         content: DataTypes.STRING,
-        userId: DataTypes.INTIGER,
-        published: DataTypes.DATETIME,
-        updated: DataTypes.DATETIME,
+        userId: DataTypes.INTEGER,
+        published: DataTypes.DATE,
+        updated: DataTypes.DATE,
     }, {
         timestamps: false,
         tableName: 'blog_posts',
