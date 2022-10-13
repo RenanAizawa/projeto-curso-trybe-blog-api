@@ -11,7 +11,13 @@ const newEmail = async (email) => {
     if (newData) return true;
 };
 
+const getAll = async () => {
+  const data = await User.findAll();
+  return data;
+};
+
 module.exports = {
   newUser,
   newEmail,
+  getAll,
 };

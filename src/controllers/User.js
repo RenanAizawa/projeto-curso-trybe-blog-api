@@ -15,6 +15,18 @@ const newUserControler = async (req, res) => {
     }
 };
 
+const allUsers = async (req, res) => {
+    try {
+        const data = await userService.getAll();
+        if (data) {
+            return res.status(200).json(data);
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
   newUserControler,
+  allUsers,
 };
