@@ -11,8 +11,8 @@ const userByEmail = async (req, res) => {
         const { email } = req.body;
         const data = await loginService.userByEmail(email);
         const token = jwt.sign(data, secret);
-        req.header.Autorization = token;
-        return res.status().json({ token });
+
+        return res.status(200).json({ token });
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
