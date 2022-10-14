@@ -1,4 +1,4 @@
-const { BlogPost } = require('../models');
+const { BlogPost, User, Category } = require('../models');
 
 const deleteByIdService = async (user, id) => {
     // console.log('SERVICE blogpost user:', user);
@@ -16,6 +16,27 @@ const deleteByIdService = async (user, id) => {
     return false;
 };
 
+const postById = async (id) => {
+    const post = await BlogPost.findOne({ where: { id },
+    include: [{
+        model: User,
+          as: 'user',
+          attributes: ['id', 'displayName', 'email', 'image'],
+    },
+{
+    model: Category,
+          as: 'categories',
+          through: { attributes: [] },
+}], 
+});
+    if (!post) return { code: 404, message: 'Post does not exist' };
+    return post;
+};
+
+const createPostService = async () => {};
+
 module.exports = {
     deleteByIdService,
+    createPostService,
+    postById,
 };

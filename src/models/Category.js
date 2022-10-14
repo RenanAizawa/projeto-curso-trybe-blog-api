@@ -14,12 +14,12 @@ const CategoriesModel = (sequelize, DataTypes) => {
       underscored: true,
     }
     );
-    schema.associate = (models) => {
-        schema.hasMany(models.PostCategory, {
-            foreignKey: 'category_id',
-            as: 'posts_id',
-        })
-    }
+    // schema.associate = (models) => {
+    //     schema.hasMany(models.PostCategory, {
+    //         foreignKey: 'category_id',
+    //         as: 'posts_id',
+    //     })
+    // }
     return schema;
 }
 
