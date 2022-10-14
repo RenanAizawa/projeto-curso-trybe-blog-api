@@ -6,7 +6,7 @@ const createCat = async (req, res) => {
     try {
         const data = await catService.createCAt(name);
         if (data.message) return res.status(data.code).json({ message: data.message });
-        console.log('controller create data:', data);
+        // console.log('controller create data:', data);
         return res.status(201).json(data);
     } catch (error) {
         return res.status(500).json({ message: error.message });
