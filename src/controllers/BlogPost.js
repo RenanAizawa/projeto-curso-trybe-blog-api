@@ -42,7 +42,7 @@ const postById = async (req, res) => {
 
 const getAllPosts = async (req, res) => {
     try {
-        const post = await blogPostService;
+        const post = await blogPostService.getAllPosts();
         if (post.message) return res.status(post.code).json({ message: post.message });
         return res.status(200).json(post);
     } catch (error) {
