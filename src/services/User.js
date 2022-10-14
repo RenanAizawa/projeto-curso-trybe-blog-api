@@ -21,9 +21,14 @@ const getById = async (id) => {
   return data;
 };
 
+const deleteMeService = async (id) => {
+  await User.destroy({ where: { id } });
+};
+
 module.exports = {
   newUser,
   newEmail,
   getAll,
   getById,
+  deleteMeService,
 };
