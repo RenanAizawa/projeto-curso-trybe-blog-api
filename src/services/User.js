@@ -7,17 +7,17 @@ const newUser = async (data) => {
 };
 
 const newEmail = async (email) => {
-    const newData = await User.findOne({ where: { email } });
+    const newData = await User.findOne({ where: { email }, attributes: { exclude: ['password'] } });
     if (newData) return true;
 };
 
 const getAll = async () => {
-  const data = await User.findAll();
+  const data = await User.findAll({ attributes: { exclude: ['password'] } });
   return data;
 };
 
 const getById = async (id) => {
-  const data = await User.findOne({ where: { id } });
+  const data = await User.findOne({ where: { id }, attributes: { exclude: ['password'] } });
   return data;
 };
 

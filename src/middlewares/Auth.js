@@ -10,9 +10,9 @@ const authValidate = async (req, res, next) => {
         console.log('token', token);
         if (!token) return res.status(401).json({ message: 'Token not found' });
         const decode = jwt.verify(token, secret);
-        console.log('decode', decode);
-        const { newData: { email } } = decode;
-        const user = await User.findOne({ where: { email });
+        // console.log('decode', decode);
+        const { data: { email } } = decode;
+        const user = await User.findOne({ where: { email } });
         if (!user) return res.status(401).json({ message: 'Expired or invalid token' });
         if (user) {
             req.user = user;

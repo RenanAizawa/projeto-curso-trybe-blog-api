@@ -7,6 +7,7 @@ const isMissing = (email, password) => {
 
 const userExist = async (email, password) => {
   const user = await login.userByEmail(email);
+  // console.log('user do midleware de login', user);
   if (!user || user.dataValues.password !== password) return false;
   return true;
 };
