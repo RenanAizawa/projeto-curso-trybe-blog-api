@@ -1,4 +1,4 @@
-const { BlogPost, User, Category } = require('../models');
+const { BlogPost, User, Category, PostCategory } = require('../models');
 
 const deleteByIdService = async (user, id) => {
     // console.log('SERVICE blogpost user:', user);
@@ -50,7 +50,19 @@ const getAllPosts = async () => {
     return post;
 };
 
-const createPostService = async () => {};
+const createPostService = async (userId, title, content, categoryIds) => {
+    console.log('dados do create: ', userId, title, content, categoryIds);
+    if (!title || !content) return { code: 400, message: 'Some required fields are missing' };
+    if (!categoryIds) return { code: 400, message: '"categoryIds" not found' };
+    const newPost = await BlogPost.create({ title, content, userId });
+    await Promise.all(
+        categoryIds.forEach((categoryId) => {
+            PostCategory.create({ postId: newPost.id, categoryId });
+        }),
+    );
+    const data = await postById(newPost.id);
+    return data;
+};
 
 module.exports = {
     deleteByIdService,

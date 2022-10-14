@@ -20,6 +20,8 @@ const createPost = async (req, res) => {
         },
         user: { dataValues: { id } },
     } = req;
+    console.log('controller dados:', title, content, categoryIds);
+    console.log('req.body:', req.body);
     try {
         const data = await blogPostService.createPostService(id, title, content, categoryIds);
         if (data.message) return res.status(data.code).json({ message: data.message });
