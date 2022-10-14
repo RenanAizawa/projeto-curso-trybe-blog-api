@@ -54,7 +54,8 @@ const createPostService = async (userId, title, content, categoryIds) => {
     console.log('dados do create: ', userId, title, content, categoryIds);
     if (!title || !content) return { code: 400, message: 'Some required fields are missing' };
     if (!categoryIds) return { code: 400, message: '"categoryIds" not found' };
-    const newPost = await BlogPost.create({ title, content, userId });
+    const newPost = await BlogPost
+    .create({ title, content, userId, published: Date.now(), updated: Date.now() });
     await Promise.all(
         categoryIds.forEach((categoryId) => {
             PostCategory.create({ postId: newPost.id, categoryId });
