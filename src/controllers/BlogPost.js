@@ -40,8 +40,19 @@ const postById = async (req, res) => {
     }
 };
 
+const getAllPosts = async (req, res) => {
+    try {
+        const post = await blogPostService;
+        if (post.message) return res.status(post.code).json({ message: post.message });
+        return res.status(200).json(post);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     deleteById,
     createPost,
     postById,
+    getAllPosts,
 };

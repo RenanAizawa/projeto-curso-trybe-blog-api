@@ -33,10 +33,28 @@ const postById = async (id) => {
     return post;
 };
 
+const getAllPosts = async () => {
+    const post = await BlogPost.findAll({
+        include: [{
+            model: User,
+              as: 'user',
+              attributes: ['id', 'displayName', 'email', 'image'],
+        },
+    {
+        model: Category,
+              as: 'categories',
+              through: { attributes: [] },
+    }], 
+    });
+    if (!post || post.length === 0) return { code: 404, message: 'Post not exist' };
+    return post;
+};
+
 const createPostService = async () => {};
 
 module.exports = {
     deleteByIdService,
     createPostService,
     postById,
+    getAllPosts,
 };
