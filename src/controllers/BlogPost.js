@@ -20,12 +20,12 @@ const createPost = async (req, res) => {
         },
         user: { dataValues: { id } },
     } = req;
-    console.log('controller dados:', title, content, categoryIds);
-    console.log('req.body:', req);
+    // console.log('controller dados:', title, content, categoryIds);
+    // console.log('req.body:', req.body);
     try {
         const data = await blogPostService.createPostService(id, title, content, categoryIds);
         if (data.message) return res.status(data.code).json({ message: data.message });
-        return res.status(404).json({ message: 'api em construção' });
+        return res.status(201).json(data);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
