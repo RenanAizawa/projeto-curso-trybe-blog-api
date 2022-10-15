@@ -68,10 +68,40 @@ const createPostService = async (userId, title, content, categoryIds) => {
     .create({ postId: newPost.dataValues.id, categoryId }));
     return newPost.dataValues;
 };
+const valid = (title, content) => {
+    if (!title || !content || title.length === 0 || content.length === 0) {
+        return { code: 400, message: 'Some required fields are missing' };
+    }
+    return false;
+};
+const updatedPost = async (userId, postId, title, content) => {
+    const post = await BlogPost.findOne({ where: { id: postId } });
+    // console.log('service teste de userID');
+    if (post.dataValues.userId !== userId) return { code: 401, message: 'Unauthorized user' };
+    const test = valid(title, content);
+    // console.log('service test :', test);
+    // console.log('service teste de title e content');
+    if (test.message) return test;
+    await BlogPost.update({ title, content }, { where: { id: postId } });
+    const newPost = await BlogPost.findOne({ where: { id: postId },
+        include: [{
+            model: User,
+              as: 'user',
+              attributes: ['id', 'displayName', 'email', 'image'],
+        },
+    {
+        model: Category,
+              as: 'categories',
+              through: { attributes: [] },
+    }], 
+    });
+    return newPost;
+};
 
 module.exports = {
     deleteByIdService,
     createPostService,
     postById,
     getAllPosts,
+    updatedPost,
 };

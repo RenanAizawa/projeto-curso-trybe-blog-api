@@ -8,5 +8,6 @@ postRoute.delete('/:id', authValidator, postControler.deleteById);
 postRoute.post('/', authValidator, postControler.createPost);
 postRoute.get('/:id', authValidator, postControler.postById);
 postRoute.get('/', authValidator, postControler.getAllPosts);
+postRoute.put('/:id', authValidator, postControler.updatedPost);
 
 module.exports = postRoute;

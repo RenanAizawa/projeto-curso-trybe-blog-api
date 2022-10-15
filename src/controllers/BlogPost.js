@@ -52,9 +52,32 @@ const getAllPosts = async (req, res) => {
     }
 };
 
+const updatedPost = async (req, res) => {
+    const {
+        params: { id },
+        user: { dataValues },
+        body: { title, content },
+    } = req;
+    // console.log('controler id: ', id);
+    // console.log('controler user: ', dataValues.id);
+    // console.log('controler body: ', body);
+    try {
+        const newPost = await blogPostService.updatedPost(dataValues.id, id, title, content);
+        // console.log('controler newPost : ', newPost);
+        if (newPost.message) {
+            // console.log('erro message controler', newPost);
+            return res.status(newPost.code).json({ message: newPost.message });
+        } 
+        return res.status(200).json(newPost);
+    } catch (er) {
+        return res.status(500).json({ message: er.message });
+    }
+};
+
 module.exports = {
     deleteById,
     createPost,
     postById,
     getAllPosts,
+    updatedPost,
 };
